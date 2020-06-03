@@ -10,18 +10,20 @@ const createAddresses = async (payload) => {
   return postCommand(payload);
 };
 
-// const updateUser = async (payload) => {
-//   const user = new User(db);
-//   const postCommand = async payload => user.updateUser(payload);
-//   return postCommand(payload);
-// };
+const updateAddress = async (payload) => {
+  const address = new Address(db);
+  const postCommand = async payload => address.updateAddress(payload);
+  return postCommand(payload);
+};
 
-// const deleteUser = async (payload) => {
-//   const user = new User(db);
-//   const postCommand = async payload => user.deleteUser(payload);
-//   return postCommand(payload);
-// };
+const deleteAddress = async (payload) => {
+  const address = new Address(db);
+  const postCommand = async payload => address.deleteAddress(payload);
+  return postCommand(payload);
+};
 
 module.exports = {
   createAddresses,
+  updateAddress,
+  deleteAddress,
 };

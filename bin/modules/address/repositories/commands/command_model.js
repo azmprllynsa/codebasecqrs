@@ -28,19 +28,26 @@ const address = () => {
   return model;
 };
 
-// const updateUser = joi.object({
-//   userId: joi.string().required(),
-//   fullName: joi.string().required(),
-//   mobileNumber: joi.string().min(8).max(15).regex(/^(\+62|62|0)/).required()
-// });
+const updateAddress = joi.object({
+  addressId: joi.string().required(),
+  zipCode: joi.string(),
+  country: joi.string(),
+  province: joi.string(),
+  city: joi.string(),
+  subDistrict: joi.string(),
+  rw: joi.string(),
+  rt: joi.string(),
+  address: joi.string().required(),
 
-// const userId = joi.object({
-//   userId: joi.string().required()
-// });
+});
+
+const addressId = joi.object({
+  addressId: joi.string().required()
+});
 
 module.exports = {
   createAddress,
   address,
-  // updateUser,
-  // userId
+  updateAddress,
+  addressId
 };

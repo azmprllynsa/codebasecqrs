@@ -54,6 +54,8 @@ function AppServer() {
   this.server.post('/addresses/v1', basicAuth.isAuthenticated, addressHandler.createAddress);
   this.server.get('/addresses/v1', basicAuth.isAuthenticated, addressHandler.getAddresses);
   this.server.get('/addresses/v1/:addressId', basicAuth.isAuthenticated, addressHandler.getAddress);
+  this.server.put('/addresses/v1/:addressId', basicAuth.isAuthenticated, addressHandler.updateAddress);
+  this.server.del('/addresses/v1/:addressId', basicAuth.isAuthenticated, addressHandler.deleteAddress);
 
   //Initiation
   mongoConnectionPooling.init();
