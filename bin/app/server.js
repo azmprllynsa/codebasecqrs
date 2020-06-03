@@ -4,6 +4,7 @@ const project = require('../../package.json');
 const basicAuth = require('../auth/basic_auth_helper');
 const wrapper = require('../helpers/utils/wrapper');
 const userHandler = require('../modules/user/handlers/api_handler');
+const addressHandler = require('../modules/address/handlers/api_handler');
 const mongoConnectionPooling = require('../helpers/databases/mongodb/connection');
 
 function AppServer() {
@@ -44,6 +45,15 @@ function AppServer() {
   this.server.get('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.getUser);
   this.server.put('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.updateUser);
   this.server.del('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.deleteUser);
+
+  // anonymous can access the end point, place code bellow
+  this.server.get('/addresses/v1/health-check', (req, res) => {
+    wrapper.response(res, 'success', wrapper.data('Index'), 'This service is running properly');
+  });
+
+  this.server.post('/addresses/v1', basicAuth.isAuthenticated, addressHandler.createAddress);
+  this.server.get('/addresses/v1', basicAuth.isAuthenticated, addressHandler.getAddresses);
+  this.server.get('/addresses/v1/:addressId', basicAuth.isAuthenticated, addressHandler.getAddress);
 
   //Initiation
   mongoConnectionPooling.init();
