@@ -43,7 +43,7 @@ function AppServer() {
   this.server.post('/users/v1', basicAuth.isAuthenticated, userHandler.createUser);
   this.server.get('/users/v1', basicAuth.isAuthenticated, userHandler.getUsers);
   this.server.get('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.getUser);
-  this.server.put('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.updateUser);
+  this.server.put('/users/v1/update/:userId', basicAuth.isAuthenticated, userHandler.updateUser);
   this.server.del('/users/v1/:userId', basicAuth.isAuthenticated, userHandler.deleteUser);
 
   // anonymous can access the end point, place code bellow
