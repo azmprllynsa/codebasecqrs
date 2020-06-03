@@ -40,40 +40,42 @@ class Address {
     return wrapper.data(address, 'Create address success', 100);
   }
 
-  // async updateUser(data) {
-  //   const ctx = 'updateUser';
-  //   if (/^(\+62|62|0)/.test(data.mobileNumber)) {
-  //     data.mobileNumber = data.mobileNumber.replace(/^(\+62|62|0)/, '0');
-  //   }
+  async updateAddress(data) {
+    const ctx = 'updateAddress';
 
-  //   const document = {
-  //     $set: {
-  //       fullName: data.fullName,
-  //       mobileNumber: data.mobileNumber
-  //     }
-  //   };
+    const document = {
+      $set: {
+        zipCode : data.zipCode,
+        country : data.country,
+        province : data.province,
+        city : data.city,
+        subDistrict : data.subDistrict,
+        rw : data.rw,
+        rt : data.rt,
+        address : data.address,
+      }
+    };
 
-  //   const saveAddress = await this.command.upsertOneUser({ userId: data.userId }, document);
-  //   if (saveAddress.err) {
-  //     logger.error(ctx,'error', 'Internal server error', saveAddress.err);
-  //     return wrapper.error(new InternalServerError('Internal server error'));
-  //   }
-  //   delete saveAddress.data.password;
-  //   logger.info(ctx, 'success', 'Update user success', saveAddress.data);
-  //   return wrapper.data(saveAddress.data, 'Update user success', 200);
-  // }
+    const saveAddress = await this.command.upsertOneAddress({ addressId: data.addressId }, document);
+    if (saveAddress.err) {
+      logger.error(ctx,'error', 'Internal server error', saveAddress.err);
+      return wrapper.error(new InternalServerError('Internal server error'));
+    }
+    logger.info(ctx, 'success', 'Update user success', saveAddress.data);
+    return wrapper.data(saveAddress.data, 'Update user success', 200);
+  }
 
-  // async deleteUser(data) {
-  //   const ctx = 'deleteUser';
-  //   const delUser = await this.command.deleteOneUser({ userId: data.userId });
-  //   if (delUser.err) {
-  //     logger.error(ctx,'error', 'Internal server error', delUser.err);
-  //     return wrapper.error(new InternalServerError('Internal server error'));
-  //   }
+  async deleteAddress(data) {
+    const ctx = 'deleteAddress';
+    const delAddress = await this.command.deleteOneAddress({ addressId: data.addressId });
+    if (delAddress.err) {
+      logger.error(ctx,'error', 'Internal server error', delAddress.err);
+      return wrapper.error(new InternalServerError('Internal server error'));
+    }
 
-  //   logger.info(ctx, 'success', 'Delete user success', '');
-  //   return wrapper.data('', 'Delete user success', 200);
-  // }
+    logger.info(ctx, 'success', 'Delete address success', '');
+    return wrapper.data('', 'Delete address success', 200);
+  }
 
 }
 

@@ -55,47 +55,49 @@ const createAddress = async (req, res) => {
   sendResponse(await postRequest(validatePayload));
 };
 
-// const updateUser = async (req, res) => {
-//   const payload = {
-//     userId: req.params.userId,
-//     ...req.body
-//   };
-//   const validatePayload = validator.isValidPayload(payload, commandModel.updateUser);
-//   const postRequest = async (result) => {
-//     if (result.err) {
-//       return result;
-//     }
-//     return commandHandler.updateUser(result.data);
-//   };
+const updateAddress = async (req, res) => {
+  const payload = {
+    addressId: req.params.addressId,
+    ...req.body
+  };
+  const validatePayload = validator.isValidPayload(payload, commandModel.updateAddress);
+  const postRequest = async (result) => {
+    if (result.err) {
+      return result;
+    }
+    return commandHandler.updateAddress(result.data);
+  };
 
-//   const sendResponse = async (result) => {
-//     (result.err) ? wrapper.response(res, 'fail', result, 'Update user fail')
-//       : wrapper.response(res, 'success', result, 'Update user success', http.OK);
-//   };
-//   sendResponse(await postRequest(validatePayload));
-// };
+  const sendResponse = async (result) => {
+    (result.err) ? wrapper.response(res, 'fail', result, 'Update address fail')
+      : wrapper.response(res, 'success', result, 'Update address success', http.OK);
+  };
+  sendResponse(await postRequest(validatePayload));
+};
 
-// const deleteUser = async (req, res) => {
-//   const payload = {
-//     userId: req.params.userId
-//   };
-//   const validatePayload = validator.isValidPayload(payload, commandModel.userId);
-//   const postRequest = async (result) => {
-//     if (result.err) {
-//       return result;
-//     }
-//     return commandHandler.deleteUser(result.data);
-//   };
+const deleteAddress = async (req, res) => {
+  const payload = {
+    addressId: req.params.addressId
+  };
+  const validatePayload = validator.isValidPayload(payload, commandModel.addressId);
+  const postRequest = async (result) => {
+    if (result.err) {
+      return result;
+    }
+    return commandHandler.deleteAddress(result.data);
+  };
 
-//   const sendResponse = async (result) => {
-//     (result.err) ? wrapper.response(res, 'fail', result, 'Delete user fail')
-//       : wrapper.response(res, 'success', result, 'Delete user success', http.OK);
-//   };
-//   sendResponse(await postRequest(validatePayload));
-// };
+  const sendResponse = async (result) => {
+    (result.err) ? wrapper.response(res, 'fail', result, 'Delete address fail')
+      : wrapper.response(res, 'success', result, 'Delete address success', http.OK);
+  };
+  sendResponse(await postRequest(validatePayload));
+};
 
 module.exports = {
   getAddresses,
   getAddress,
   createAddress,
+  updateAddress,
+  deleteAddress,
 };
