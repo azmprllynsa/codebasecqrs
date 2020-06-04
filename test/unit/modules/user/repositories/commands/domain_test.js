@@ -4,6 +4,7 @@ const query = require('../../../../../../bin/modules/user/repositories/queries/q
 const sinon = require('sinon');
 const assert = require('assert');
 const logger = require('../../../../../../bin/helpers/utils/logger');
+
 describe('User-commandDomain', () =>{
   beforeEach(async () => {
     sinon.stub(logger, 'log');
