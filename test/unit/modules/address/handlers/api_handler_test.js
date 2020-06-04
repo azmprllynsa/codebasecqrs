@@ -88,5 +88,82 @@ describe('Address Api Handler', () => {
     });
   });
 
+  describe('createAddress', () => {
+    it('Shoulr cover error validation', async () => {
+      await addressHandler.createAddress(req, res);
+    });
+    it('Should return error', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err:true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'createAddresses').resolves(resultError);
+      expect(await addressHandler.createAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.createAddresses.restore();
+    });
+    it('Should return success', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err: true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'createAddresses').resolves(resultSuccess);
+      expect(await addressHandler.createAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.createAddresses.restore();
+    });
+  });
+
+  describe('updateAddress', () => {
+    it('Should cover error validation', async () => {
+      await addressHandler.updateAddress(req, res);
+    });
+    it('Should return error', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err: true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'updateAddress').resolves(resultError);
+      expect(await addressHandler.updateAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.updateAddress.restore();
+    });
+    it('Should return success', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err: true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'updateAddress').resolves(resultSuccess);
+      expect(await addressHandler.updateAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.updateAddress.restore();
+    });
+  });
+
+  describe('deleteAddress', async () => {
+    it('Should cover error validation', async () => {
+      await addressHandler.deleteAddress(req, res);
+    });
+    it('Should return error', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err: true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'deleteAddress').resolves(resultError);
+      expect(await addressHandler.deleteAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.deleteAddress.restore();
+    });
+    it('Should return success', async () => {
+      sinon.stub(validator, 'isValidPayload').resolves({
+        err: true,
+        data: {}
+      });
+      sinon.stub(commandHandler, 'deleteAddress').resolves(resultSuccess);
+      expect(await addressHandler.deleteAddress(req, res));
+      validator.isValidPayload.restore();
+      commandHandler.deleteAddress.restore();
+    });
+  });
 });
 
