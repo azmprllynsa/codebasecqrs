@@ -17,13 +17,9 @@ class Address {
       logger.error(ctx, 'error', 'Can not find addresses', address.err);
       return wrapper.error(new NotFoundError('Can not find addresses'));
     }
-    const { data } = address;
-    data.map(v => {
-      delete v.password;
-    });
 
-    logger.info(ctx, 'success', 'Get addresses success', data);
-    return wrapper.data(data);
+    logger.info(ctx, 'success', 'Get addresses success', address);
+    return wrapper.data(address);
   }
 
   async getAddress(payload) {

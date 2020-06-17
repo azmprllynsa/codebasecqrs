@@ -1,4 +1,3 @@
-
 class Query {
 
   constructor(db) {

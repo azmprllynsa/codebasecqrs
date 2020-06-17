@@ -79,7 +79,7 @@ describe('User-commandDomain', () =>{
         password : 'aku123',
       };
       sinon.stub(query.prototype, 'findOneUser').resolves(queryResult);
-      sinon.stub(command.prototype, 'insertOneUser').resolves({err: null, data: { email: 'testing@gmail.com' }});
+      sinon.stub(command.prototype, 'insertOneUser').resolves({err: null , data: { email: 'testinggmail.com' }});
       const result = await user.createUser(payload);
       query.prototype.findOneUser.restore();
       command.prototype.insertOneUser.restore();
