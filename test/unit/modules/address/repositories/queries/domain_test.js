@@ -36,22 +36,22 @@ describe('Address-queryDomain', () => {
       assert.notEqual(result.err, null);
     });
 
-    // it('should return get address success', async() => {
-    //   let queryResult = {
-    //     err: null,
-    //     data: [
-    //       {
-    //         addressId: 'blabla',
-    //         zipCode: '35375',
-    //         country: 'Indonesia'
-    //       }
-    //     ]
-    //   };
-    //   sinon.stub(query.prototype, 'findAddress').resolves(queryResult);
-    //   const result = await address.getAddresses();
-    //   // query.prototype.findAddress.restore();
-    //   assert.equal(result.data.length, 1);
-    // });
+    it('should return get address success', async() => {
+      let queryResult = {
+        err: null,
+        data: [
+          {
+            addressId: 'blabla',
+            zipCode: '35375',
+            country: 'Indonesia'
+          }
+        ]
+      };
+      sinon.stub(query.prototype, 'findAddress').resolves(queryResult);
+      const result = await address.getAddresses();
+      query.prototype.findAddress.restore();
+      assert.equal(result.data.length, 1);
+    });
   });
 
   describe('getAddress', () => {
